@@ -59,7 +59,7 @@ jobs:
           flutter pub get > /dev/null 2>&1
 
           echo "Running \`flutter build apk\` to generate APK for the deployment build"
-          flutter build apk --release > /dev/null 2>&1 || true
+          flutter build apk --release || (echo "Build failed" && tail -n 20 build/flutter_build.log && exit 1)
 
           flutter pub get > /dev/null 2>&1
           echo "Done fetching packages and generating APK"
