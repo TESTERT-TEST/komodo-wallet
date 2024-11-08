@@ -1,6 +1,6 @@
 {
     "name": "GRMS Web Wallet",
-    "short_name": "KomodoWebWallet",
+    "short_name": "GRMSWebWallet",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#ffffff",
