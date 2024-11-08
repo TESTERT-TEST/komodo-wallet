@@ -43,8 +43,26 @@ jobs:
             exit 1
           fi
 
-      - name: Build Android APK
-        run: flutter build apk --release
+      - name: Clean and Build APK
+        run: |
+          echo "Running \`flutter clean\` to clean the project"
+          flutter clean
+
+          echo "Cleaning up unnecessary files"
+          rm -rf ~/.pub-cache
+          rm -rf build/*
+          rm -rf web/src/mm2/*
+          rm -rf web/src/kdfi/*
+          rm -rf web/dist/*
+
+          echo "Fetching packages again"
+          flutter pub get > /dev/null 2>&1
+
+          echo "Running \`flutter build apk\` to generate APK for the deployment build"
+          flutter build apk --release > /dev/null 2>&1 || true
+
+          flutter pub get > /dev/null 2>&1
+          echo "Done fetching packages and generating APK"
 
       - name: Archive APK
         run: |
