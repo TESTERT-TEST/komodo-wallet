@@ -1,4 +1,4 @@
-name: Create Release and Upload Build Artifacts for Android
+name: Create Release and Upload Build Artifacts
 
 on:
   push:
@@ -10,83 +10,84 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      - name: Shortify commit sha
+        shell: bash
+        run: echo "sha_short=$(echo ${GITHUB_SHA::7})" >> $GITHUB_OUTPUT
+        id: shortify_commit
+
+      - name: Get branch
+        shell: bash
+        run: echo "ref_short=$(echo ${GITHUB_REF##*/})" >> $GITHUB_OUTPUT
+        id: get_branch
+
+      - name: Setup GH Actions
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
-      - name: Setup Java 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Setup Flutter
+      - name: Get stable flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.22.x'
           channel: 'stable'
 
-      - name: Install Dependencies
-        run: flutter pub get
-
-      - name: Check Coin Assets Update
+      - name: Prepare build directory
         run: |
-          if grep -q "Coin assets have been updated" build-log.txt; then
-            echo "Coin assets updated, cleaning build and cache..."
-            flutter clean
-            rm -rf ~/.pub-cache
-            echo "Re-run the build process."
-            exit 1
-          fi
-
-      - name: Clean and Build APK
-        run: |
-          echo "Running \`flutter clean\` to clean the project"
           flutter clean
-          echo "Cleaning up unnecessary files"
-          rm -rf ~/.pub-cache
           rm -rf build/*
-          rm -rf web/src/mm2/*
-          rm -rf web/src/kdfi/*
-          rm -rf web/dist/*
-          echo "Fetching packages again"
-          flutter pub get > /dev/null 2>&1
-          echo "Running \`flutter build apk\` to generate APK for the deployment build"
-          flutter build apk --release || (echo "Build failed" && tail -n 20 build/flutter_build.log && exit 1)
-          flutter pub get > /dev/null 2>&1
-          echo "Done fetching packages and generating APK"
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: List contents of build directory (debugging)
+      - name: Fetch packages and generate assets
         run: |
-          echo "Listing contents of the build directory to check if APK is present:"
-          ls -R build
-
-      - name: Archive APK
+          echo "Running \`flutter build\` to generate assets for the Android build"
+          flutter pub get > /dev/null 2>&1
+          flutter build apk --release > /dev/null 2>&1 || true
+          flutter pub get > /dev/null 2>&1
+          echo "Done fetching packages and generating assets"
+        
+      - name: Build GRMS Wallet Android
         run: |
-          if [ -f build/app/outputs/flutter-apk/app-release.apk ]; then
-            mkdir -p build-outputs/
-            cp build/app/outputs/flutter-apk/app-release.apk build-outputs/app-release.apk
-          else
-            echo "Error: APK not found. Build might have failed."
+          flutter doctor -v
+          flutter build apk --release
+          
+      - name: Validate build
+        run: |
+          if [ ! -f build/app/outputs/flutter-apk/app-release.apk ]; then
+            echo "Error: Android build failed. No APK file found."
             exit 1
           fi
+          
+      - name: Archive build artifacts
+        run: |
+          zip -r build-android.zip build/app/outputs/flutter-apk/
 
-      - name: Upload APK as Artifact
+      - name: Upload build as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: android-apk
-          path: build-outputs/app-release.apk
+          name: android-build
+          path: build-android.zip
 
       - name: Create Release
-        uses: ncipollo/release-action@v1
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
           release_name: Release ${{ github.ref_name }}
           draft: false
           prerelease: false
-          artifacts: build-outputs/app-release.apk
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build-android.zip
+          asset_name: app-release.apk
+          asset_content_type: application/zip
