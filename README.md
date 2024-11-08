@@ -1,6 +1,5 @@
 # GRMS Wallet & DEX
 
-[![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
 
 <a href="https://dex.grms.pw" target="_blank">![web_app](https://github.com/KomodoPlatform/komodo-wallet-archive/assets/10762374/ca06f4bc-2e7a-40c6-9e06-e0872a32cbdf)</a>
 
