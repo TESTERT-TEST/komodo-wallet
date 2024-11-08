@@ -1,10 +1,6 @@
 # GRMS Wallet & DEX
 
 
-<a href="https://dex.grms.pw" target="_blank">![web_app](https://github.com/KomodoPlatform/komodo-wallet-archive/assets/10762374/ca06f4bc-2e7a-40c6-9e06-e0872a32cbdf)</a>
-
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/KomodoPlatform/komodo-wallet?quickstart=1)
-
 ### Runs on: 
  - [Web](https://dex.grms.pw)
  - Desktop
