@@ -51,6 +51,8 @@ jobs:
           sudo apt install -y android-sdk
           sudo apt install -y android-sdk-platform-tools
           sudo apt install -y android-sdk-build-tools
+          # Установка Android SDK на более позднюю версию
+          sudo apt install -y openjdk-17-jdk
           export ANDROID_HOME=/usr/local/lib/android/sdk
           export ANDROID_SDK_ROOT=/usr/local/lib/android/sdk
           export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
