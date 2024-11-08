@@ -3,7 +3,7 @@ name: Create Release and Upload Build Artifacts
 on:
   push:
     branches:
-      - master
+      - dev
 
 jobs:
   build_and_deploy:
