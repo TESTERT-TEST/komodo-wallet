@@ -10,7 +10,6 @@
  - Mobile
    - Android
    - iOS
-
 ----
 
 ## Developer guide.
