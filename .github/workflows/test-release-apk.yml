@@ -64,10 +64,20 @@ jobs:
           flutter pub get > /dev/null 2>&1
           echo "Done fetching packages and generating APK"
 
+      - name: List contents of build directory (debugging)
+        run: |
+          echo "Listing contents of the build directory to check if APK is present:"
+          ls -R build
+
       - name: Archive APK
         run: |
-          mkdir -p build-outputs/
-          cp build/app/outputs/flutter-apk/app-release.apk build-outputs/app-release.apk
+          if [ -f build/app/outputs/flutter-apk/app-release.apk ]; then
+            mkdir -p build-outputs/
+            cp build/app/outputs/flutter-apk/app-release.apk build-outputs/app-release.apk
+          else
+            echo "Error: APK not found. Build might have failed."
+            exit 1
+          fi
 
       - name: Upload APK as Artifact
         uses: actions/upload-artifact@v3
