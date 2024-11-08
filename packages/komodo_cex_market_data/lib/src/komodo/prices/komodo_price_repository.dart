@@ -1,7 +1,7 @@
 import 'package:komodo_cex_market_data/src/komodo/prices/komodo_price_provider.dart';
 import 'package:komodo_cex_market_data/src/models/models.dart';
 
-/// A repository for fetching the prices of coins from the Komodo Defi API.
+/// A repository for fetching the prices of coins from the GRMS Defi API.
 class KomodoPriceRepository {
   /// Creates a new instance of [KomodoPriceRepository].
   KomodoPriceRepository({

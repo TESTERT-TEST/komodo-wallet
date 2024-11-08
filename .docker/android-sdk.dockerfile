@@ -61,7 +61,7 @@ RUN set -o xtrace \
     && sudo chown -R $USER:$USER /root \
     && touch /root/.android/repositories.cfg \
     && git config --global user.email "hello@komodoplatform.com" \
-    && git config --global user.name "Komodo Platform" \
+    && git config --global user.name "GRMS Platform" \
     && yes | sdkmanager \
     "platforms;android-$ANDROID_PLATFORM_VERSION" \
     "build-tools;$ANDROID_BUILD_TOOLS_VERSION" \

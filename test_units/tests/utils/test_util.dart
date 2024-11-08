@@ -19,7 +19,7 @@ Coin setCoin(
     fallbackSwapContract: null,
     isTestCoin: false,
     mode: CoinMode.standard,
-    name: 'Komodo',
+    name: 'GRMS',
     nodes: [],
     priority: 30,
     protocolData: null,

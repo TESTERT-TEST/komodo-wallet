@@ -1,4 +1,4 @@
-# UI Kit of Komodo Platform for Flutter
+# UI Kit of GRMS Platform for Flutter
 
 ## Main rules
 

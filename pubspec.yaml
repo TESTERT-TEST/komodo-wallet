@@ -29,7 +29,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  ## ---- Local packages by Komodo team
+  ## ---- Local packages by GRMS team
 
   app_theme:
     path: "./app_theme"

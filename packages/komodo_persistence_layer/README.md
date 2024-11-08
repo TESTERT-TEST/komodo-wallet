@@ -1,4 +1,4 @@
-# Komodo Persistence Layer
+# GRMS Persistence Layer
 
 This package provides the functionality to persist data to storage and retrieve it.
 
