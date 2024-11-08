@@ -47,20 +47,16 @@ jobs:
         run: |
           echo "Running \`flutter clean\` to clean the project"
           flutter clean
-
           echo "Cleaning up unnecessary files"
           rm -rf ~/.pub-cache
           rm -rf build/*
           rm -rf web/src/mm2/*
           rm -rf web/src/kdfi/*
           rm -rf web/dist/*
-
           echo "Fetching packages again"
           flutter pub get > /dev/null 2>&1
-
           echo "Running \`flutter build apk\` to generate APK for the deployment build"
           flutter build apk --release || (echo "Build failed" && tail -n 20 build/flutter_build.log && exit 1)
-
           flutter pub get > /dev/null 2>&1
           echo "Done fetching packages and generating APK"
 
