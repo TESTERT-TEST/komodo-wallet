@@ -1,4 +1,5 @@
 name: Create Release and Upload Build Artifacts
+
 on:
   push:
     branches:
@@ -7,6 +8,7 @@ on:
 jobs:
   build_and_release:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -32,11 +34,15 @@ jobs:
           flutter pub get
           flutter build web --release
 
+      - name: Archive build artifacts
+        run: |
+          zip -r build-web.zip build/web/
+
       - name: Upload build as artifact
         uses: actions/upload-artifact@v3
         with:
           name: web-build
-          path: build/web/
+          path: build-web.zip
 
       - name: Create Release
         id: create_release
@@ -55,6 +61,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/web/
+          asset_path: build-web.zip
           asset_name: build-web.zip
           asset_content_type: application/zip
