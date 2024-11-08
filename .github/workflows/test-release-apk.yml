@@ -1,4 +1,4 @@
-name: Create Release and Upload Build Artifacts
+name: Create Release and Upload Build Artifacts Android
 
 on:
   push:
@@ -44,6 +44,19 @@ jobs:
           echo "JAVA_HOME set to $JAVA_HOME"
           java -version  # Проверим, что Java 17 установлена
 
+      - name: Install Android SDK and ADB
+        run: |
+          sudo apt update
+          sudo apt install -y adb
+          sudo apt install -y android-sdk
+          sudo apt install -y android-sdk-platform-tools
+          sudo apt install -y android-sdk-build-tools
+          export ANDROID_HOME=/usr/local/lib/android/sdk
+          export ANDROID_SDK_ROOT=/usr/local/lib/android/sdk
+          export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
+          echo "ANDROID_HOME set to $ANDROID_HOME"
+          adb --version  # Проверим, что adb установлен
+
       - name: Prepare build directory
         run: |
           flutter clean
@@ -58,19 +71,19 @@ jobs:
           flutter build apk --release > /dev/null 2>&1 || true
           flutter pub get > /dev/null 2>&1
           echo "Done fetching packages and generating assets"
-
+          
       - name: Build GRMS Wallet Android
         run: |
           flutter doctor -v
           flutter build apk --release
-
+          
       - name: Validate build
         run: |
           if [ ! -f build/app/outputs/flutter-apk/app-release.apk ]; then
             echo "Error: Android build failed. No APK file found."
             exit 1
           fi
-
+          
       - name: Archive build artifacts
         run: |
           zip -r build-android.zip build/app/outputs/flutter-apk/
