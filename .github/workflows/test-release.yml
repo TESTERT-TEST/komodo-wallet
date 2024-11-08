@@ -25,6 +25,10 @@ jobs:
       - name: Build Flutter Web App
         run: |
           flutter clean
+          rm -rf build/*
+          rm -rf web/src/mm2/*
+          rm -rf web/src/kdfi/*
+          rm -rf web/dist/*
           flutter pub get
           flutter build web --release
 
