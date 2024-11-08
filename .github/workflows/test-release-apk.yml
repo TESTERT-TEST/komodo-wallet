@@ -1,4 +1,4 @@
-name: Create Release and Upload Build Artifacts Android
+name: Create Release and Upload Build Artifacts
 
 on:
   push:
@@ -42,6 +42,7 @@ jobs:
           export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
           export PATH=$JAVA_HOME/bin:$PATH
           echo "JAVA_HOME set to $JAVA_HOME"
+          java -version  # Проверим, что Java 17 установлена
 
       - name: Prepare build directory
         run: |
