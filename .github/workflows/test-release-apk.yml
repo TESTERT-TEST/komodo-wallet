@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -33,6 +33,16 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
 
+      - name: Check Coin Assets Update
+        run: |
+          if grep -q "Coin assets have been updated" build-log.txt; then
+            echo "Coin assets updated, cleaning build and cache..."
+            flutter clean
+            rm -rf ~/.pub-cache
+            echo "Re-run the build process."
+            exit 1
+          fi
+
       - name: Build Android APK
         run: flutter build apk --release
 
@@ -48,22 +58,11 @@ jobs:
           path: build-outputs/app-release.apk
 
       - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ github.ref_name }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
           release_name: Release ${{ github.ref_name }}
           draft: false
           prerelease: false
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build-outputs/app-release.apk
-          asset_name: app-release.apk
-          asset_content_type: application/vnd.android.package-archive
+          artifacts: build-outputs/app-release.apk
