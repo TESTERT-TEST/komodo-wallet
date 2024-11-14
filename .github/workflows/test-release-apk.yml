@@ -1,4 +1,4 @@
-name: Create Release and Upload Build Artifacts
+name: Create Release and Upload Build Artifacts Android
 
 on:
   push:
@@ -34,6 +34,7 @@ jobs:
           flutter-version: '3.22.x'
           channel: 'stable'
 
+      # Установка Java 17
       - name: Install Java 17
         run: |
           sudo apt update
