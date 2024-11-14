@@ -1,4 +1,4 @@
-name: Create Release and Upload Build Artifacts Android
+name: Create Release and Upload Build Artifacts
 
 on:
   push:
@@ -34,17 +34,34 @@ jobs:
           flutter-version: '3.22.x'
           channel: 'stable'
 
+      - name: Install Java 17
+        run: |
+          sudo apt update
+          sudo apt install openjdk-17-jdk -y
+          sudo update-alternatives --config java
+          export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+          export PATH=$JAVA_HOME/bin:$PATH
+          echo "JAVA_HOME set to $JAVA_HOME"
+          java -version  # Проверим, что Java 17 установлена
+
       - name: Prepare build directory
         run: |
           flutter clean
           rm -rf build/*
+          rm -rf web/src/mm2/*
+          rm -rf web/src/kdfi/*
+          rm -rf web/dist/*
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fetch packages and generate assets
         run: |
+          echo "Running \`flutter build\` to generate assets for the deployment build"
           flutter pub get > /dev/null 2>&1
           flutter build apk --release > /dev/null 2>&1 || true
           flutter pub get > /dev/null 2>&1
-          
+          echo "Done fetching packages and generating assets"
+
       - name: Build GRMS Wallet Android
         run: |
           flutter doctor -v
