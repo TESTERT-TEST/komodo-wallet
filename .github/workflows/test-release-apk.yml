@@ -48,7 +48,8 @@ jobs:
       # Установим Java 17 для Gradle
       - name: Set Java 17 for Gradle
         run: |
-          echo "org.gradle.java.home=/usr/lib/jvm/java-17-openjdk-amd64" >> ~/.gradle/gradle.properties
+           mkdir -p ~/.gradle
+           echo "org.gradle.java.home=/usr/lib/jvm/java-17-openjdk-amd64" >> ~/.gradle/gradle.properties
 
       # Подготовка build директории
       - name: Prepare build directory
