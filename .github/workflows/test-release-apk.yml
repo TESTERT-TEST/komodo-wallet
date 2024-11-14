@@ -45,6 +45,7 @@ jobs:
           echo "JAVA_HOME set to $JAVA_HOME"
           java -version  # Проверим, что Java 17 установлена
 
+      # Подготовка build директории
       - name: Prepare build directory
         run: |
           flutter clean
@@ -63,11 +64,13 @@ jobs:
           flutter pub get > /dev/null 2>&1
           echo "Done fetching packages and generating assets"
 
+      # Сборка GRMS Wallet Android
       - name: Build GRMS Wallet Android
         run: |
           flutter doctor -v
           flutter build apk --release
 
+      # Проверка сборки APK
       - name: Validate build
         run: |
           if [ ! -f build/app/outputs/flutter-apk/app-release.apk ]; then
@@ -75,16 +78,19 @@ jobs:
             exit 1
           fi
 
+      # Архивирование артефактов сборки
       - name: Archive build artifacts
         run: |
           zip -r build-android.zip build/app/outputs/flutter-apk/
 
+      # Загрузка артефактов в GitHub
       - name: Upload build as artifact
         uses: actions/upload-artifact@v3
         with:
           name: android-build
           path: build-android.zip
 
+      # Создание релиза
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -96,6 +102,7 @@ jobs:
           draft: false
           prerelease: false
 
+      # Загрузка артефактов релиза
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
