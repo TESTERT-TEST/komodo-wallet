@@ -1,4 +1,4 @@
-name: Create Release and Upload Build Artifacts
+name: Create Release and Upload Build Artifacts Android
 
 on:
   push:
