@@ -194,7 +194,7 @@ dependencies:
 
   # Embedded web view
   # Approved via https://github.com/KomodoPlatform/komodo-wallet/pull/3
-  flutter_inappwebview: 6.1.5 # Android, iOS, macOS, Web (currently broke, open issue)
+  flutter_inappwebview: 6.0.0 # Android, iOS, macOS, Web (currently broke, open issue)
   desktop_webview_window: 0.2.3 # Windows, Linux
 
   # Newly added, not yet reviewed
