@@ -1,6 +1,5 @@
 # GRMS Wallet & DEX
 
-
 ### Runs on: 
  - [Web](https://dex.grms.pw)
  - Desktop
