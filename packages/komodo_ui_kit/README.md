@@ -1,4 +1,4 @@
-# UI Kit of GRMS Platform for Flutter
+# UI Kit of MoonSnake Platform for Flutter
 
 ## Main rules
 

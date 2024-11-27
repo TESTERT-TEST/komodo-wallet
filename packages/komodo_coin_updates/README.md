@@ -1,6 +1,6 @@
-# GRMS Coin Updater
+# MoonSnake Coin Updater
 
-This package provides the funcionality to update the coins list and configuration files for the GRMS Platform at runtime.
+This package provides the funcionality to update the coins list and configuration files for the MoonSnake Platform at runtime.
 
 ## Usage
 

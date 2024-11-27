@@ -1,4 +1,4 @@
-# GRMS CEX Market Data
+# MoonSnake CEX Market Data
 
 Provide a consistent interface through which to access multiple CEX market data APIs.
 

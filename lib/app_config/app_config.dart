@@ -22,8 +22,8 @@ const Duration kPerformanceLogInterval = Duration(minutes: 1);
 // This information is here because it is not contextual and is branded.
 // Names of their own are not localized. Also, the application is initialized before
 // the localization package is initialized.
-String get appTitle => "GRMS Wallet | Non-Custodial Multi-Coin Wallet & DEX";
-String get appShortTitle => "GRMS Wallet";
+String get appTitle => "MoonSnake Wallet | Non-Custodial Multi-Coin Wallet & DEX";
+String get appShortTitle => "MoonSnake Wallet";
 
 // We're using a hardcoded seed for the hidden login instead
 // of generating it on the fly. This will allow us to access

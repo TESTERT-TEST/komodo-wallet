@@ -68,7 +68,7 @@ jobs:
           flutter pub get > /dev/null 2>&1
           echo "Done fetching packages and generating assets"
 
-      - name: Build GRMS Wallet Android
+      - name: Build MoonSnake Wallet Android
         run: |
           flutter doctor -v
           flutter build apk --release

@@ -8,7 +8,7 @@ class EmbeddedBitrefillUrl {
     required this.referralCode,
     this.theme = 'dark',
     this.language = 'en',
-    this.companyName = 'GRMS Platform',
+    this.companyName = 'MoonSnake Platform',
     this.showPaymentInfo = false,
     this.refundAddress,
     this.paymentMethods,
@@ -31,7 +31,7 @@ class EmbeddedBitrefillUrl {
   final String language;
 
   /// The company name to use when opening the Bitrefill widget.
-  /// This defaults to 'GRMS Platform'.
+  /// This defaults to 'MoonSnake Platform'.
   final String companyName;
 
   /// Whether to show payment info when opening the Bitrefill widget.

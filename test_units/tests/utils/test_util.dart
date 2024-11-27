@@ -19,7 +19,7 @@ Coin setCoin(
     fallbackSwapContract: null,
     isTestCoin: false,
     mode: CoinMode.standard,
-    name: 'GRMS',
+    name: 'MoonSnake',
     nodes: [],
     priority: 30,
     protocolData: null,

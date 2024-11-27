@@ -10,7 +10,7 @@ void main() {
   });
 
   group('getPrices', () {
-    test('should return GRMS fiat rates list', () async {
+    test('should return MoonSnake fiat rates list', () async {
       // Arrange
 
       // Act

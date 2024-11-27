@@ -430,7 +430,7 @@ final Map<String, String> _prominentColors = {
   "zil": "#47bebc",
   "qnt": "#040404",
   "via": "#545454",
-  "grms": "#129eb2",
+  "MoonSnake": "#129eb2",
   "spacecoin": "#32406a",
   "kiiro": "#fcac44",
   "flow": "#04eb8c",

@@ -1,4 +1,4 @@
-# GRMS Persistence Layer
+# MoonSnake Persistence Layer
 
 This package provides the functionality to persist data to storage and retrieve it.
 

@@ -29,7 +29,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  ## ---- Local packages by GRMS team
+  ## ---- Local packages by MoonSnake team
 
   app_theme:
     path: "./app_theme"
@@ -259,7 +259,7 @@ flutter:
     - assets/fiat/providers/
     - assets/packages/flutter_inappwebview_web/assets/web/
 
-    # GRMS Wallet build transformer configuration. This handles all build-time
+    # MoonSnake Wallet build transformer configuration. This handles all build-time
     # dependencies, such as fetching coin assets, platform-specific assets, and
     # more. This replaces the complicated build process that was previously
     # required running multiple scripts and manual steps.

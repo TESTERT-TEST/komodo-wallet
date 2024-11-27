@@ -197,7 +197,7 @@ class CoinGeckoCexProvider {
   }
 
   /// Fetches prices from CoinGecko API.
-  /// The CoinGecko API is used as a fallback when the GRMS API is down.
+  /// The CoinGecko API is used as a fallback when the MoonSnake API is down.
   ///
   /// The [coinGeckoIds] are the CoinGecko IDs of the coins to fetch prices for.
   /// The [vsCurrencies] is a comma-separated list of currencies to compare to.

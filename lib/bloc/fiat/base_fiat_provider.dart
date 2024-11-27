@@ -188,7 +188,7 @@ abstract class BaseFiatProvider {
     // These exist in coin config but not in CoinType structure yet:
     // ARBITRUM
 
-    // These chain IDs are not supported yet by GRMS Wallet:
+    // These chain IDs are not supported yet by MoonSnake Wallet:
     // ADA / CARDANO
     // AVAX-X
     // ALGO

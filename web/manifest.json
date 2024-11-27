@@ -1,6 +1,6 @@
 {
-    "name": "GRMS Web Wallet",
-    "short_name": "GRMSWebWallet",
+    "name": "MoonSnake Web Wallet",
+    "short_name": "MoonSnakeWebWallet",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#ffffff",

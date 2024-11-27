@@ -161,7 +161,7 @@ RUN set -e -o xtrace \
     && yes | sdkmanager --licenses \
     && sdkmanager platform-tools \
     && git config --global user.email "hello@komodoplatform.com" \
-    && git config --global user.name "GRMS Platform" \
+    && git config --global user.name "MoonSnake Platform" \
     && yes | sdkmanager \
     "platforms;android-$ANDROID_PLATFORM_VERSION" \
     "build-tools;$ANDROID_BUILD_TOOLS_VERSION"

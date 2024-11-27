@@ -52,7 +52,7 @@ jobs:
           flutter pub get > /dev/null 2>&1
           echo "Done fetching packages and generating assets"
 
-      - name: Build GRMS Wallet web
+      - name: Build MoonSnake Wallet web
         run: |
           flutter doctor -v
           flutter build web --csp --profile --no-web-resources-cdn

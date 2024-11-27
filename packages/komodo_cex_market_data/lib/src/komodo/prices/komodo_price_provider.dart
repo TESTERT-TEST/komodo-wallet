@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:komodo_cex_market_data/src/models/models.dart';
 
-/// A class for fetching prices from GRMS API.
+/// A class for fetching prices from MoonSnake API.
 class KomodoPriceProvider {
   /// Creates a new instance of [KomodoPriceProvider].
   KomodoPriceProvider({
@@ -15,7 +15,7 @@ class KomodoPriceProvider {
   /// The URL to fetch the main tickers from.
   final String mainTickersUrl;
 
-  /// Fetches prices from GRMS API.
+  /// Fetches prices from MoonSnake API.
   ///
   /// Returns a map of coin IDs to their prices.
   ///
@@ -37,7 +37,7 @@ class KomodoPriceProvider {
     final json = jsonDecode(body) as Map<String, dynamic>?;
 
     if (json == null) {
-      throw Exception('Invalid response from GRMS API: empty JSON');
+      throw Exception('Invalid response from MoonSnake API: empty JSON');
     }
 
     final prices = <String, CexPrice>{};

@@ -1,7 +1,7 @@
-# GRMS Wallet & DEX
+# MoonSnake Wallet & DEX
 
 ### Runs on: 
- - [Web](https://dex.grms.pw)
+ - [Web](https://app.moonsnake.org)
  - Desktop
    - Windows
    - MacOS
@@ -13,7 +13,7 @@
 
 ## Developer guide.
 
-Current production version is available here: https://dex.grms.pw
+Current production version is available here: https://app.moonsnake.org
 
 ### Index
 - [Code of Conduct](docs/CODE_OF_CONDUCT.md)

@@ -66,6 +66,6 @@ class BitrefillProvider {
 
     return kDebugMode
         ? 'http://localhost:42069/assets/web_pages/bitrefill_widget.html'
-        : 'https://dex.grms.pw/assets/assets/web_pages/bitrefill_widget.html';
+        : 'https://app.moonsnake.org/assets/assets/web_pages/bitrefill_widget.html';
   }
 }
