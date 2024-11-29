@@ -113,6 +113,7 @@ List<String> get enabledByDefaultCoins => [
       'BNB',
       'AVAX',
       'FTM',
+      'MNSE',
       if (kDebugMode || kProfileMode) 'DOC',
       if (kDebugMode || kProfileMode) 'MARTY',
     ];
