@@ -1,4 +1,4 @@
-# MoonSnake Wallet & DEX
+# MoonSnake Wallet & DEX (KOMODO Wallet & DEX)
 
 ### Runs on: 
  - [Web](https://app.moonsnake.org)
